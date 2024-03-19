@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borrar z</title>
+</head>
+<body>
+    <h1>Borrar Usuario</h1>
+    <form method="post">
+    <label for="idUsuario">Ingrese el ID:</label>
+    <input type="text" name="idUsuario" id="idUsuario"/>
+    <br>
+    <button>Eliminar usuario</button>
+    </form>
+    {% if get_flashed_messages() %}
+        {% for message in get_flashed_messages() %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <button style="background-color: red; color: white; "onclick="window.location.href='/usuario'">Regresar</button>
+</body>
+</html>

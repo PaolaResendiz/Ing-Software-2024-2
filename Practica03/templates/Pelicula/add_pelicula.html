@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Agregar pelicula</title>
+</head>
+<body>
+    <h1>Crear una pelicula</h1>
+    <form action="{{ url_for('pelicula.agregar_pelicula') }}" method="POST">
+        <label for="nombre">Ingrese el nombre:</label>
+        <input type="text" name="nombre" id="nombre"/>
+        <br>
+        <label for="genero">Ingrese el genero de la pelicula</label>
+        <input type="text" name="genero" id="genero"/>
+        <br>
+        <label for="duracion">Ingrese la duracion de la pelicula</label>
+        <input type="number" name="duracion" id="duracion"/>
+        <br>
+        <label for="inventario">Ingrese el inventario que hay</label>
+        <input type="number" name="inventario" id="inventario"/>
+        <br>
+        <button type="submit">Crear pelicula</button>
+    </form>
+    {% if get_flashed_messages() %}
+        {% for message in get_flashed_messages() %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <button style="background-color: red; color: white; "onclick="window.location.href='/pelicula'">Regresar</button>
+</body>
+</html>

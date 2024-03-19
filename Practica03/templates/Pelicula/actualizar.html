@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar pelicula</title>
+</head>
+<body style="
+background-image: url(UP.jpg);
+background-position: center;
+background-repeat: no repeat;
+background-size: cover;
+background-attachment: fixed;
+">
+<body>
+    <h2>Actualizar pelicula</h2>
+
+    <form action="{{ url_for('pelicula.actualizar_pelicula') }}" method="POST">
+        <label for="idPelicula">ID de la pelicula:</label>
+        <input type="text" id="idPelicula" name="idPelicula">
+        <br>
+        <label for="campoActualizar">Campo a Actualizar:</label>
+        <select id="campoActualizar" name="campoActualizar" onchange="actualizarLabel()">
+            <option value="nombre">Nombre</option>
+            <option value="genero">Genero</option>
+            <option value="duracion">Duracion</option>
+            <option value="inventario">Inventario</option>
+        </select><br>
+
+        <label for="nuevoValor" id="labelNuevoValor">Nuevo Valor:</label>
+        <input type="text" id="nuevoValor" name="nuevoValor">
+        <br>
+        <button type="submit">Actualizar pelicula</button>
+    </form>
+
+    {% if get_flashed_messages() %}
+        {% for message in get_flashed_messages() %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <button style="background-color: red; color: white; "onclick="window.location.href='/pelicula'">Regresar</button>
+
+    <script>
+        function actualizarLabel() {
+            var campoSeleccionado = document.getElementById("campoActualizar").value;
+            var labelNuevoValor = document.getElementById("labelNuevoValor");
+
+            switch(campoSeleccionado) {
+                case "nombre":
+                    labelNuevoValor.innerHTML = "Nuevo Nombre:";
+                    break;
+                case "genero":
+                    labelNuevoValor.innerHTML = "Nuevo Genero:";
+                    break;
+                case "duracion":
+                    labelNuevoValor.innerHTML = "Nueva Duración:";
+                    break;
+                case "inventario":
+                    labelNuevoValor.innerHTML = "Nuevo Inventario:";
+                    break;
+                default:
+                    labelNuevoValor.innerHTML = "Nuevo Valor:";
+            }
+        }
+    </script>
+</body>
+</html>

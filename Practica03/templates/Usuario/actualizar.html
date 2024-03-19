@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar Usuario</title>
+</head>
+<body>
+    <h2>Actualizar Usuario</h2>
+
+    <form action="{{ url_for('usuario.actualizar_usuario') }}" method="POST">
+        <label for="idUsuario">ID de Usuario:</label>
+        <input type="text" id="idUsuario" name="idUsuario">
+        <br>
+        <label for="campoActualizar">Campo a Actualizar:</label>
+        <select id="campoActualizar" name="campoActualizar" onchange="actualizarLabel()">
+            <option value="nombre">Nombre</option>
+            <option value="apPat">Apellido Paterno</option>
+            <option value="apMat">Apellido Materno</option>
+            <option value="password">Password</option>
+            <option value="email">Email</option>
+        </select><br>
+
+        <label for="nuevoValor" id="labelNuevoValor">Nuevo Valor:</label>
+        <input type="text" id="nuevoValor" name="nuevoValor">
+        <br>
+        <button type="submit">Actualizar Usuario</button>
+    </form>
+
+    {% if get_flashed_messages() %}
+        {% for message in get_flashed_messages() %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <button style="background-color: red; color: white; "onclick="window.location.href='/usuario'">Regresar</button>
+
+    <script>
+        function actualizarLabel() {
+            var campoSeleccionado = document.getElementById("campoActualizar").value;
+            var labelNuevoValor = document.getElementById("labelNuevoValor");
+
+            switch(campoSeleccionado) {
+                case "nombre":
+                    labelNuevoValor.innerHTML = "Nuevo Nombre:";
+                    break;
+                case "apPat":
+                    labelNuevoValor.innerHTML = "Nuevo Apellido Paterno:";
+                    break;
+                case "apMat":
+                    labelNuevoValor.innerHTML = "Nuevo Apellido Materno:";
+                    break;
+                case "password":
+                    labelNuevoValor.innerHTML = "Nueva Contraseña:";
+                    break;
+                case "email":
+                    labelNuevoValor.innerHTML = "Nuevo Email:";
+                    break;
+                default:
+                    labelNuevoValor.innerHTML = "Nuevo Valor:";
+            }
+        }
+    </script>
+</body>
+</html>
